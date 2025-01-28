@@ -36,7 +36,7 @@ const ScoreBoard = () => {
       // Store username in localStorage
       localStorage.setItem('username', enteredUsername);
       setUsername(enteredUsername);
-      if (enteredUsername === 'admin') {
+      if (enteredUsername === 'Prad@@!nd!@@27') {
         setIsAdmin(true); // Admin can edit scores
       } else {
         setIsAdmin(false); // Regular user can only view scores
