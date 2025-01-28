@@ -28,7 +28,16 @@ const App = () => {
 
       const docSnap = await getDoc(scoresDocRef);
       if (docSnap.exists()) {
-        setScores(docSnap.data());
+        const data = docSnap.data();
+        
+        // Fix the order of teams
+        const orderedScores = {
+          red: data.red,
+          green: data.green,
+          blue: data.blue,
+          yellow: data.yellow,
+        };
+        setScores(orderedScores);
       }
     };
     loadScores();
