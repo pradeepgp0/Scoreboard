@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { db, doc, getDoc, updateDoc } from './firebase.js';
 import './Scoreboard.css';
 
-const ScoreBoard = () => {
-  // States to hold the login status and scores
+const App = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [username, setUsername] = useState('');
   const [enteredUsername, setEnteredUsername] = useState('');
@@ -13,47 +13,51 @@ const ScoreBoard = () => {
     yellow: { cricket: 0, badminton: 0, throwball: 0, total: 0 },
   });
 
-  // On component mount, check for saved username and scores in localStorage
-  useEffect(() => {
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      setUsername(storedUsername);
-      if (storedUsername === 'admin') {
-        setIsAdmin(true); // Grant admin access if the username is "admin"
-      }
-    }
+  const scoresDocRef = doc(db, 'scores', 'scoreboard');
 
-    // Load saved scores from localStorage if available
-    const savedScores = localStorage.getItem('scores');
-    if (savedScores) {
-      setScores(JSON.parse(savedScores));
-    }
+  // Load data from Firestore on mount
+  useEffect(() => {
+    const loadScores = async () => {
+      const storedUsername = localStorage.getItem('username');
+      if (storedUsername) {
+        setUsername(storedUsername);
+        if (storedUsername === 'admin') {
+          setIsAdmin(true);
+        }
+      }
+
+      const docSnap = await getDoc(scoresDocRef);
+      if (docSnap.exists()) {
+        setScores(docSnap.data());
+      }
+    };
+    loadScores();
   }, []);
 
-  // Handle login submission
+  // Handle login
   const handleLogin = () => {
     if (enteredUsername) {
-      // Store username in localStorage
       localStorage.setItem('username', enteredUsername);
       setUsername(enteredUsername);
-      if (enteredUsername === 'Prad@@!nd!@@27') {
-        setIsAdmin(true); // Admin can edit scores
+      if (enteredUsername === 'admin') {
+        setIsAdmin(true);
       } else {
-        setIsAdmin(false); // Regular user can only view scores
+        setIsAdmin(false);
       }
     }
   };
 
   // Handle score changes
-  const handleScoreChange = (team, game, value) => {
-    if (!isAdmin) return; // Prevent non-admins from editing scores
+  const handleScoreChange = async (team, game, value) => {
+    if (!isAdmin) return;
     const newScores = { ...scores };
     newScores[team][game] = parseInt(value) || 0;
     newScores[team].total = newScores[team].cricket + newScores[team].badminton + newScores[team].throwball;
 
     setScores(newScores);
-    // Save updated scores to localStorage
-    localStorage.setItem('scores', JSON.stringify(newScores));
+
+    // Save the updated scores to Firestore
+    await updateDoc(scoresDocRef, newScores);
   };
 
   // Handle logout
@@ -61,14 +65,11 @@ const ScoreBoard = () => {
     localStorage.removeItem('username');
     setUsername('');
     setIsAdmin(false);
-    // Optionally, remove scores from localStorage when logging out
-    // localStorage.removeItem('scores');
   };
 
   return (
     <div className="App">
       {!username ? (
-        // Login page if the user is not logged in
         <div className="login-container">
           <h2>Login</h2>
           <input
@@ -107,7 +108,7 @@ const ScoreBoard = () => {
                       type="number"
                       value={scores[team].cricket}
                       onChange={(e) => handleScoreChange(team, 'cricket', e.target.value)}
-                      disabled={!isAdmin} // Disable input for non-admins
+                      disabled={!isAdmin}
                     />
                   </td>
                   <td>
@@ -115,7 +116,7 @@ const ScoreBoard = () => {
                       type="number"
                       value={scores[team].badminton}
                       onChange={(e) => handleScoreChange(team, 'badminton', e.target.value)}
-                      disabled={!isAdmin} // Disable input for non-admins
+                      disabled={!isAdmin}
                     />
                   </td>
                   <td>
@@ -123,7 +124,7 @@ const ScoreBoard = () => {
                       type="number"
                       value={scores[team].throwball}
                       onChange={(e) => handleScoreChange(team, 'throwball', e.target.value)}
-                      disabled={!isAdmin} // Disable input for non-admins
+                      disabled={!isAdmin}
                     />
                   </td>
                   <td>{scores[team].total}</td>
@@ -137,4 +138,4 @@ const ScoreBoard = () => {
   );
 };
 
-export default ScoreBoard;
+export default App;
