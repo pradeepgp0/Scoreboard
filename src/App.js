@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db, doc, getDoc, updateDoc } from './firebase.js';
+import { db, doc, getDoc, setDoc } from './firebase.js';
 import './Scoreboard.css';
 
 const App = () => {
@@ -57,7 +57,7 @@ const App = () => {
     setScores(newScores);
 
     // Save the updated scores to Firestore
-    await updateDoc(scoresDocRef, newScores);
+    await setDoc(scoresDocRef, newScores);
   };
 
   // Handle logout
