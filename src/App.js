@@ -57,7 +57,13 @@ const App = () => {
     setScores(newScores);
 
     // Save the updated scores to Firestore
-    await setDoc(scoresDocRef, newScores);
+    try {
+      // Use setDoc instead of updateDoc if the document might not exist yet
+      await setDoc(scoresDocRef, newScores);
+      console.log("Scores updated successfully");
+    } catch (error) {
+      console.error("Error updating scores:", error);
+    }
   };
 
   // Handle logout
