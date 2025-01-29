@@ -48,7 +48,7 @@ const App = () => {
     if (enteredUsername) {
       localStorage.setItem('username', enteredUsername);
       setUsername(enteredUsername);
-      if (enteredUsername === 'admin') {
+      if (enteredUsername === 'Prad@2025') {
         setIsAdmin(true);
       } else {
         setIsAdmin(false);
@@ -109,6 +109,7 @@ const App = () => {
             <h1>Spardhey 2025 ScoreBoard</h1>
             <div>
               <span>Welcome</span>
+              <span className='usernamecenter'>{username === "Prad@2025" ? "" : username}</span>
             </div>
 
           </header>
