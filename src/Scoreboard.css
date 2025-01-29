@@ -39,7 +39,7 @@ h1 {
 }
 
 .scoreboard-table th {
-  background-color: #4CAF50;
+  background-color: #517692;
   color: white;
 }
 
@@ -49,10 +49,6 @@ h1 {
   text-align: center;
   font-size: 16px;
   border: 1px solid #ccc;
-}
-
-.scoreboard-table tr:nth-child(even) {
-  background-color: #f2f2f2;
 }
 
 .scoreboard-table tr:hover {
@@ -78,4 +74,89 @@ h1 {
 
 input:disabled {
   background-color: #f0f0f0;
+}
+
+.logincenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.buttoncenter {
+  margin-left: 2rem;
+  width: 10vh;
+  height: 4vh;
+}
+.usernamecenter {
+  width: 25vh;
+  height:5vh;
+}
+.logoutcorner {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
+.logoutbutton {
+  width:10vh;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+
+/*animation*/
+
+
+
+
+.celebrate {
+  animation: bounceRotate 0.8s ease-in-out;
+}
+
+/* Animation to bounce the score */
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Optional styling for celebration */
+.celebrate {
+  color: #2a7bae;  /* Celebration color */
+  font-weight: bold;
+}
+
+/* Combined Bounce and Rotation Animation */
+@keyframes bounceRotate {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.2) rotate(15deg); /* Slight rotation while scaling */
+  }
+  50% {
+    transform: scale(1) rotate(-15deg); /* Rotate in the opposite direction */
+  }
+  75% {
+    transform: scale(1.1) rotate(10deg); /* Slight rotation again */
+  }
+  100% {
+    transform: scale(1) rotate(0deg); /* Reset the rotation back to 0deg */
+  }
 }

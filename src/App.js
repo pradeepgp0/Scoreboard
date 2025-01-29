@@ -29,7 +29,7 @@ const App = () => {
       const docSnap = await getDoc(scoresDocRef);
       if (docSnap.exists()) {
         const data = docSnap.data();
-        
+
         // Fix the order of teams
         const orderedScores = {
           red: data.red,
@@ -85,24 +85,32 @@ const App = () => {
   return (
     <div className="App">
       {!username ? (
-        <div className="login-container">
-          <h2>Login</h2>
-          <input
-            type="text"
-            placeholder="Enter username"
-            value={enteredUsername}
-            onChange={(e) => setEnteredUsername(e.target.value)}
-          />
-          <button onClick={handleLogin}>Login</button>
+        <div className='logincenter'>
+          <header>
+            <h1>Login Page</h1>
+          </header>
+          <div className="login-container">
+            <input
+              type="text"
+              className='usernamecenter'
+              placeholder="Enter username"
+              value={enteredUsername}
+              onChange={(e) => setEnteredUsername(e.target.value)}
+            />
+            <button className="buttoncenter" onClick={handleLogin}>Login</button>
+          </div>
         </div>
       ) : (
         <div>
           <header>
+            <div className='logoutcorner'>
+              <button className='logoutbutton' onClick={handleLogout}>Logout</button>
+            </div>
             <h1>Spardhey 2025 ScoreBoard</h1>
             <div>
               <span>Welcome</span>
-              <button onClick={handleLogout}>Logout</button>
             </div>
+
           </header>
           <table className="scoreboard-table">
             <thead>
@@ -121,6 +129,7 @@ const App = () => {
                   <td>
                     <input
                       type="number"
+                      className='celebrate'
                       value={scores[team].cricket}
                       onChange={(e) => handleScoreChange(team, 'cricket', e.target.value)}
                       disabled={!isAdmin}
@@ -129,6 +138,7 @@ const App = () => {
                   <td>
                     <input
                       type="number"
+                      className='celebrate'
                       value={scores[team].badminton}
                       onChange={(e) => handleScoreChange(team, 'badminton', e.target.value)}
                       disabled={!isAdmin}
@@ -137,12 +147,20 @@ const App = () => {
                   <td>
                     <input
                       type="number"
+                      className='celebrate'
                       value={scores[team].throwball}
                       onChange={(e) => handleScoreChange(team, 'throwball', e.target.value)}
                       disabled={!isAdmin}
                     />
                   </td>
-                  <td>{scores[team].total}</td>
+                  <td>
+                    <input
+                      type="number"
+                      className='celebrate'
+                      value={scores[team].total}
+                      disabled={true}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
