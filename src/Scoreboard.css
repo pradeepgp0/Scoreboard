@@ -102,12 +102,19 @@ input:disabled {
   background-color: #f0f0f0;
 }
 
-.logincenter {
+.loginpage {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.logintextbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .buttoncenter {
@@ -144,34 +151,8 @@ input:disabled {
 
 /*animation*/
 
-
-
-
 .celebrate {
   animation: bounceRotate 0.8s ease-in-out;
-}
-
-/* Animation to bounce the score */
-@keyframes bounce {
-  0% {
-    transform: scale(1);
-  }
-
-  25% {
-    transform: scale(1.2);
-  }
-
-  50% {
-    transform: scale(1);
-  }
-
-  75% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1);
-  }
 }
 
 /* Optional styling for celebration */
@@ -204,10 +185,3 @@ input:disabled {
     /* Reset the rotation back to 0deg */
   }
 }
-
-/* .layout {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-} */ 

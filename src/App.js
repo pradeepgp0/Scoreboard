@@ -85,11 +85,11 @@ const App = () => {
   return (
     <div className="App">
       {!username ? (
-        <div className='logincenter'>
+        <div className='loginpage'>
           <header>
             <h1>Login Page</h1>
           </header>
-          <div className="login-container">
+          <div className="logintextbox">
             <input
               type="text"
               className='usernamecenter'
@@ -112,7 +112,7 @@ const App = () => {
             </div>
             <h1>Spardhey 2025 ScoreBoard</h1>
           </header>
-          <div className='layout'>
+          <div>
             <table className="scoreboard-table">
               <thead>
                 <tr>
