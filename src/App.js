@@ -106,12 +106,11 @@ const App = () => {
             <div className='logoutcorner'>
               <button className='logoutbutton' onClick={handleLogout}>Logout</button>
             </div>
-            <h1>Spardhey 2025 ScoreBoard</h1>
-            <div>
+            <div  className='usernamecenter'>
               <span>Welcome</span>
-              <span className='usernamecenter'>{username === "Prad@2025" ? "" : username}</span>
+              <span>{username === "Prad@2025" ? "" : username}</span>
             </div>
-
+            <h1>Spardhey 2025 ScoreBoard</h1>
           </header>
           <table className="scoreboard-table">
             <thead>

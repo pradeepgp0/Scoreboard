@@ -1,19 +1,33 @@
-* {
+html,
+body {
+  height: 100;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background: linear-gradient(45deg, #ffbb33, #ff5e62); /* Orange to Red Gradient */
+  background-image: url('https://1.bp.blogspot.com/-17SJHaaWs04/XdfPcPzL0II/AAAAAAAACYQ/P1-WgF6UBX4EE5g_1YAFeufzNdDrr5xZgCLcBGAsYHQ/w1200-h630-p-k-no-nu/El%2BBig%2BPicture%2Bdel%2BDeporte%2BThe%2BMost%2BPopular%2BSports%2Bin%2Bthe%2BWorld.jpg');
+  background-size: cover;
+  /* Ensures the image covers the entire screen */
+  background-position: center;
+  /* Centers the image */
+  background-attachment: fixed;
+  /* Fixes the background so it doesn't scroll with the content */
   color: white;
+  /* Text color for contrast */
   font-family: 'Arial', sans-serif;
+  /* Font for the page */
 }
 
+/* The scoreboard container styling remains the same */
 .scoreboard-container {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Slightly transparent white background */
+  border-radius: 15px;
 }
 
 header {
@@ -29,19 +43,28 @@ h1 {
 }
 
 .scoreboard-table {
-  width: 100%;
+  width: 50%;
   border-collapse: collapse;
+  margin: 0 auto;
+  /* Center the table */
+  border-radius: 64px;
+  /* Round the corners of the table */
+  overflow: hidden;
+  /* Make sure rounded corners work */
+  margin-top: 8%;
 }
 
-.scoreboard-table th, .scoreboard-table td {
+.scoreboard-table th,
+.scoreboard-table td {
   padding: 15px;
   text-align: center;
-  border: 1px solid #ddd;
+  border-radius: 37px;
 }
 
 .scoreboard-table th {
   background-color: #517692;
   color: white;
+  border-radius: 32px;
 }
 
 .scoreboard-table input {
@@ -49,7 +72,6 @@ h1 {
   padding: 5px;
   text-align: center;
   font-size: 16px;
-  border: 1px solid #ccc;
 }
 
 .scoreboard-table tr:hover {
@@ -59,10 +81,12 @@ h1 {
 /* Team colors */
 .red {
   background-color: #f44336;
+
 }
 
 .green {
   background-color: #4CAF50;
+
 }
 
 .blue {
@@ -90,10 +114,19 @@ input:disabled {
   width: 10vh;
   height: 4vh;
 }
+
 .usernamecenter {
   width: 25vh;
-  height:5vh;
+  height: 5vh;
+  color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  text-transform: capitalize;
+  padding-left: 15px;
 }
+
 .logoutcorner {
   display: flex;
   justify-content: flex-end;
@@ -102,15 +135,12 @@ input:disabled {
 }
 
 .logoutbutton {
-  width:10vh;
+  width: 10vh;
   padding: 4px;
   display: flex;
   justify-content: center;
 }
 
-.usernamecenter {
-  padding-left: 15px;
-}
 /*animation*/
 
 
@@ -125,15 +155,19 @@ input:disabled {
   0% {
     transform: scale(1);
   }
+
   25% {
     transform: scale(1.2);
   }
+
   50% {
     transform: scale(1);
   }
+
   75% {
     transform: scale(1.1);
   }
+
   100% {
     transform: scale(1);
   }
@@ -141,8 +175,7 @@ input:disabled {
 
 /* Optional styling for celebration */
 .celebrate {
-  color: #2a7bae;  /* Celebration color */
-  font-weight: bold;
+  border-radius: 10px;
 }
 
 /* Combined Bounce and Rotation Animation */
@@ -150,16 +183,24 @@ input:disabled {
   0% {
     transform: scale(1) rotate(0deg);
   }
+
   25% {
-    transform: scale(1.2) rotate(15deg); /* Slight rotation while scaling */
+    transform: scale(1.2) rotate(15deg);
+    /* Slight rotation while scaling */
   }
+
   50% {
-    transform: scale(1) rotate(-15deg); /* Rotate in the opposite direction */
+    transform: scale(1) rotate(-15deg);
+    /* Rotate in the opposite direction */
   }
+
   75% {
-    transform: scale(1.1) rotate(10deg); /* Slight rotation again */
+    transform: scale(1.1) rotate(10deg);
+    /* Slight rotation again */
   }
+
   100% {
-    transform: scale(1) rotate(0deg); /* Reset the rotation back to 0deg */
+    transform: scale(1) rotate(0deg);
+    /* Reset the rotation back to 0deg */
   }
 }
