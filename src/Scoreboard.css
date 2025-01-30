@@ -177,7 +177,6 @@ input:disabled {
 .celebrate {
   border-radius: 10px;
 }
-
 /* Combined Bounce and Rotation Animation */
 @keyframes bounceRotate {
   0% {
@@ -203,4 +202,11 @@ input:disabled {
     transform: scale(1) rotate(0deg);
     /* Reset the rotation back to 0deg */
   }
+}
+
+.layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

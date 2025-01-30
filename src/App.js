@@ -101,71 +101,73 @@ const App = () => {
           </div>
         </div>
       ) : (
-        <div>
+        <>
           <header>
             <div className='logoutcorner'>
               <button className='logoutbutton' onClick={handleLogout}>Logout</button>
             </div>
-            <div  className='usernamecenter'>
+            <div className='usernamecenter'>
               <span>Welcome</span>
               <span>{username === "Prad@2025" ? "" : username}</span>
             </div>
             <h1>Spardhey 2025 ScoreBoard</h1>
           </header>
-          <table className="scoreboard-table">
-            <thead>
-              <tr>
-                <th>Team</th>
-                <th>Cricket</th>
-                <th>Badminton</th>
-                <th>Throwball</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(scores).map((team) => (
-                <tr key={team} className={team}>
-                  <td>{team.charAt(0).toUpperCase() + team.slice(1)} Team</td>
-                  <td>
-                    <input
-                      type="number"
-                      className='celebrate'
-                      value={scores[team].cricket}
-                      onChange={(e) => handleScoreChange(team, 'cricket', e.target.value)}
-                      disabled={!isAdmin}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      className='celebrate'
-                      value={scores[team].badminton}
-                      onChange={(e) => handleScoreChange(team, 'badminton', e.target.value)}
-                      disabled={!isAdmin}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      className='celebrate'
-                      value={scores[team].throwball}
-                      onChange={(e) => handleScoreChange(team, 'throwball', e.target.value)}
-                      disabled={!isAdmin}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="number"
-                      className='celebrate'
-                      value={scores[team].total}
-                      disabled={true}
-                    />
-                  </td>
+          <div className='layout'>
+            <table className="scoreboard-table">
+              <thead>
+                <tr>
+                  <th>Team</th>
+                  <th>Cricket</th>
+                  <th>Badminton</th>
+                  <th>Throwball</th>
+                  <th>Total</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {Object.keys(scores).map((team) => (
+                  <tr key={team} className={team}>
+                    <td>{team.charAt(0).toUpperCase() + team.slice(1)} Team</td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].cricket}
+                        onChange={(e) => handleScoreChange(team, 'cricket', e.target.value)}
+                        disabled={!isAdmin}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].badminton}
+                        onChange={(e) => handleScoreChange(team, 'badminton', e.target.value)}
+                        disabled={!isAdmin}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].throwball}
+                        onChange={(e) => handleScoreChange(team, 'throwball', e.target.value)}
+                        disabled={!isAdmin}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].total}
+                        disabled={true}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </div>
   );
