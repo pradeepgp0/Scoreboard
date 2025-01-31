@@ -7,10 +7,10 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [enteredUsername, setEnteredUsername] = useState('');
   const [scores, setScores] = useState({
-    red: { cricket: 0, badminton: 0, throwball: 0, total: 0 },
-    green: { cricket: 0, badminton: 0, throwball: 0, total: 0 },
-    blue: { cricket: 0, badminton: 0, throwball: 0, total: 0 },
-    yellow: { cricket: 0, badminton: 0, throwball: 0, total: 0 },
+    red: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 },
+    green: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 },
+    blue: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 },
+    yellow: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 }
   });
 
   const scoresDocRef = doc(db, 'scores', 'scoreboard');
@@ -120,13 +120,19 @@ const App = () => {
                   <th>Cricket</th>
                   <th>Badminton</th>
                   <th>Throwball</th>
+                  <th>Relay</th>
+                  <th>Table Tennis</th>
+                  <th>Lagori</th>
+                  <th>Chess</th>
+                  <th>Swimming</th>
+                  <th>Football</th>
                   <th>Total</th>
                 </tr>
               </thead>
               <tbody>
                 {Object.keys(scores).map((team) => (
                   <tr key={team} className={team}>
-                    <td>{team.charAt(0).toUpperCase() + team.slice(1)} Team</td>
+                    <td>{team.charAt(0).toUpperCase() + team.slice(1)}</td>
                     <td>
                       <input
                         type="number"
@@ -151,6 +157,60 @@ const App = () => {
                         className='celebrate'
                         value={scores[team].throwball}
                         onChange={(e) => handleScoreChange(team, 'throwball', e.target.value)}
+                        disabled={!isAdmin}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].Relay}
+                        onChange={(e) => handleScoreChange(team, 'Relay', e.target.value)}
+                        disabled={!isAdmin}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].TableTennis}
+                        onChange={(e) => handleScoreChange(team, 'TableTennis', e.target.value)}
+                        disabled={!isAdmin}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].Lagori}
+                        onChange={(e) => handleScoreChange(team, 'Lagori', e.target.value)}
+                        disabled={!isAdmin}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].Chess}
+                        onChange={(e) => handleScoreChange(team, 'Chess', e.target.value)}
+                        disabled={!isAdmin}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].cricket}
+                        onChange={(e) => handleScoreChange(team, 'Swimming', e.target.value)}
+                        disabled={!isAdmin}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className='celebrate'
+                        value={scores[team].Football}
+                        onChange={(e) => handleScoreChange(team, 'Football', e.target.value)}
                         disabled={!isAdmin}
                       />
                     </td>
