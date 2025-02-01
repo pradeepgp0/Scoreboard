@@ -31,10 +31,66 @@ const App = () => {
         const data = docSnap.data();
         // Fix the order of teams
         const orderedScores = {
-          red: data.red,
-          green: data.green,
-          blue: data.blue,
-          yellow: data.yellow,
+          red: {
+            ...{
+              cricket: 0,
+              badminton: 0,
+              throwball: 0,
+              Relay: 0,
+              TableTennis: 0,
+              Lagori: 0,
+              Chess: 0,
+              Swimming: 0,
+              Football: 0,
+              total: 0,
+            },
+            ...data.red,
+          },
+          green: {
+            ...{
+              cricket: 0,
+              badminton: 0,
+              throwball: 0,
+              Relay: 0,
+              TableTennis: 0,
+              Lagori: 0,
+              Chess: 0,
+              Swimming: 0,
+              Football: 0,
+              total: 0,
+            },
+            ...data.green,
+          },
+          blue: {
+            ...{
+              cricket: 0,
+              badminton: 0,
+              throwball: 0,
+              Relay: 0,
+              TableTennis: 0,
+              Lagori: 0,
+              Chess: 0,
+              Swimming: 0,
+              Football: 0,
+              total: 0,
+            },
+            ...data.blue,
+          },
+          yellow: {
+            ...{
+              cricket: 0,
+              badminton: 0,
+              throwball: 0,
+              Relay: 0,
+              TableTennis: 0,
+              Lagori: 0,
+              Chess: 0,
+              Swimming: 0,
+              Football: 0,
+              total: 0,
+            },
+            ...data.yellow,
+          },
         };
         setScores(orderedScores);
       }
