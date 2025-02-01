@@ -52,7 +52,7 @@ h1 {
   /* Round the corners of the table */
   overflow: hidden;
   /* Make sure rounded corners work */
-  margin-top: 8%;
+  margin-top: 5%;
 }
 
 .scoreboard-table th,
@@ -123,30 +123,11 @@ input:disabled {
   height: 4vh;
 }
 
-.usernamecenter {
-  width: 25vh;
-  height: 5vh;
-  color: green;
+.headercontent {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: stretch;
-  text-transform: capitalize;
-  padding-left: 15px;
-}
-
-.logoutcorner {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 15px;
-  margin-top: 10px;
-}
-
-.logoutbutton {
-  width: 10vh;
-  padding: 4px;
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /*animation*/
@@ -157,7 +138,7 @@ input:disabled {
 
 /* Optional styling for celebration */
 .celebrate {
-  border-radius: 10px;
+  border-radius: 50px;
 }
 /* Combined Bounce and Rotation Animation */
 @keyframes bounceRotate {

@@ -29,7 +29,6 @@ const App = () => {
       const docSnap = await getDoc(scoresDocRef);
       if (docSnap.exists()) {
         const data = docSnap.data();
-
         // Fix the order of teams
         const orderedScores = {
           red: data.red,
@@ -56,24 +55,31 @@ const App = () => {
     }
   };
 
-  // Handle score changes
   const handleScoreChange = async (team, game, value) => {
     if (!isAdmin) return;
+
+    // Update the score for the specific game
     const newScores = { ...scores };
     newScores[team][game] = parseInt(value) || 0;
-    newScores[team].total = newScores[team].cricket + newScores[team].badminton + newScores[team].throwball;
 
+    // Recalculate the total score for the team (sum of all games)
+    newScores[team].total = Object.keys(newScores[team])
+      .filter(key => key !== 'total') // Exclude 'total' from the summing
+      .reduce((sum, key) => sum + newScores[team][key], 0);
+
+    // Update the state with the new scores
     setScores(newScores);
 
     // Save the updated scores to Firestore
     try {
-      // Use setDoc instead of updateDoc if the document might not exist yet
       await setDoc(scoresDocRef, newScores);
       console.log("Scores updated successfully");
     } catch (error) {
       console.error("Error updating scores:", error);
     }
   };
+
+
 
   // Handle logout
   const handleLogout = () => {
@@ -102,15 +108,10 @@ const App = () => {
         </div>
       ) : (
         <>
-          <header>
-            <div className='logoutcorner'>
-              <button className='logoutbutton' onClick={handleLogout}>Logout</button>
-            </div>
-            <div className='usernamecenter'>
-              <span>Welcome</span>
-              <span>{username === "Prad@2025" ? "" : username}</span>
-            </div>
+          <header className='headercontent'>
+            <span style={{ color: "green", marginLeft: "12px" }}>Welcome {username === "Prad@2025" ? "" : " " + username}</span>
             <h1>Spardhey 2025 ScoreBoard</h1>
+            <span style={{ color: "green", marginRight: "12px" }} onClick={handleLogout} > Logout </span>
           </header>
           <div>
             <table className="scoreboard-table">
@@ -133,87 +134,17 @@ const App = () => {
                 {Object.keys(scores).map((team) => (
                   <tr key={team} className={team}>
                     <td>{team.charAt(0).toUpperCase() + team.slice(1)}</td>
-                    <td>
-                      <input
-                        type="number"
-                        className='celebrate'
-                        value={scores[team].cricket}
-                        onChange={(e) => handleScoreChange(team, 'cricket', e.target.value)}
-                        disabled={!isAdmin}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className='celebrate'
-                        value={scores[team].badminton}
-                        onChange={(e) => handleScoreChange(team, 'badminton', e.target.value)}
-                        disabled={!isAdmin}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className='celebrate'
-                        value={scores[team].throwball}
-                        onChange={(e) => handleScoreChange(team, 'throwball', e.target.value)}
-                        disabled={!isAdmin}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className='celebrate'
-                        value={scores[team].Relay}
-                        onChange={(e) => handleScoreChange(team, 'Relay', e.target.value)}
-                        disabled={!isAdmin}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className='celebrate'
-                        value={scores[team].TableTennis}
-                        onChange={(e) => handleScoreChange(team, 'TableTennis', e.target.value)}
-                        disabled={!isAdmin}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className='celebrate'
-                        value={scores[team].Lagori}
-                        onChange={(e) => handleScoreChange(team, 'Lagori', e.target.value)}
-                        disabled={!isAdmin}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className='celebrate'
-                        value={scores[team].Chess}
-                        onChange={(e) => handleScoreChange(team, 'Chess', e.target.value)}
-                        disabled={!isAdmin}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className='celebrate'
-                        value={scores[team].cricket}
-                        onChange={(e) => handleScoreChange(team, 'Swimming', e.target.value)}
-                        disabled={!isAdmin}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className='celebrate'
-                        value={scores[team].Football}
-                        onChange={(e) => handleScoreChange(team, 'Football', e.target.value)}
-                        disabled={!isAdmin}
-                      />
-                    </td>
+                    {Object.keys(scores[team]).filter(x => x !== 'total').map((value, index) => (
+                      <td key={index}>
+                        <input
+                          type="number"
+                          className='celebrate'
+                          value={scores[team][value]}
+                          onChange={(e) => handleScoreChange(team, value, e.target.value)}
+                          disabled={!isAdmin}
+                        />
+                      </td>
+                    ))}
                     <td>
                       <input
                         type="number"
