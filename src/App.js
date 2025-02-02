@@ -21,7 +21,7 @@ const App = () => {
       const storedUsername = localStorage.getItem('username');
       if (storedUsername) {
         setUsername(storedUsername);
-        if (storedUsername === 'admin') {
+        if (storedUsername === 'Prad@2025') {
           setIsAdmin(true);
         }
       }
