@@ -303,7 +303,7 @@ const App = () => {
           {isChart ? (
             <>
               <div style={{textAlign:'end', marginRight:'10px'}}><button className="view" onClick={() => { setIsChart(false) }}>View Scoreboard</button></div>
-              <div style={{ width: '50%', margin: '20px auto', height: "60vh" }}>
+              <div style={{ width: '80%', margin: '20px auto', height: "60vh" }}>
                 <Line style={{ backgroundColor: 'aliceblue', opacity: '0.8' }} data={chartData} options={chartOptions} />
               </div>
             </>
