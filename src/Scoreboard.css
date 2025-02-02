@@ -130,6 +130,14 @@ input:disabled {
   align-items: center;
 }
 
+.view {
+  text-align: end;
+  border-radius: 20px;
+  background-color: #4CAF50;
+  border:0;
+  color: white;
+  margin-right: 10px;
+}
 /*animation*/
 
 .celebrate {
