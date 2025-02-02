@@ -142,6 +142,7 @@ const App = () => {
     localStorage.removeItem('username');
     setUsername('');
     setIsAdmin(false);
+    setEnteredUsername('');
   };
 
   return (
