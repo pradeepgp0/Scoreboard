@@ -258,13 +258,13 @@ const App = () => {
           scores.blue.total,
           scores.yellow.total,
         ],
-        borderColor: '#FF5733', // Line color
-        backgroundColor: 'rgba(255, 87, 51, 0.2)', // Line fill color
+        borderColor: 'rgba(194, 134, 29, 0.86)', // Line color
+        backgroundColor: 'rgba(194, 134, 29, 0.86)', // Line fill color
         fill: true, // Fill the area under the line
         tension: 0.4, // Smooth the line curve
         borderWidth: 3, // Line thickness
-        pointBackgroundColor: '#FF5733', // Data points' background color
-        pointBorderColor: '#fff', // Data points' border color
+        pointBackgroundColor: 'rgba(194, 134, 29, 0.86)', // Data points' background color
+        pointBorderColor: 'rgba(194, 134, 29, 0.86)', // Data points' border color
         pointBorderWidth: 2, // Data points' border width
         pointRadius: 6, // Data points' size
       },
