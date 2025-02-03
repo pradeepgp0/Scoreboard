@@ -117,6 +117,12 @@ input:disabled {
   align-items: center;
 }
 
+.headerlogin {
+  color: orangered;
+  font-size: 4rem;
+}
+
+
 .buttoncenter {
   margin-left: 2rem;
   width: 10vh;
@@ -152,6 +158,14 @@ input:disabled {
 .viewpos {
   text-align: right;
   margin-right: 12px;
+}
+
+.user {
+  color: green;
+}
+
+.logoutuser {
+  cursor: pointer;
 }
 /*animation*/
 

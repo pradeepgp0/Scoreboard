@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, doc, getDoc, setDoc } from './firebase.js';
 import './Scoreboard.css';
-import { authName } from './encrypt.js';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend, PointElement } from 'chart.js';
 
@@ -28,16 +27,19 @@ const App = () => {
   });
 
   const scoresDocRef = doc(db, 'scores', 'scoreboard');
+  const loginDocRef = doc(db, 'login', 'loginboard');
 
   useEffect(() => {
     const loadScores = async () => {
       const storedUsername = localStorage.getItem('username');
+      const authName = localStorage.getItem('adminname');
       if (storedUsername) {
         setUsername(storedUsername);
         if (storedUsername === authName) {
           setIsAdmin(true);
         }
       }
+
 
       const docSnap = await getDoc(scoresDocRef);
       if (docSnap.exists()) {
@@ -111,17 +113,22 @@ const App = () => {
 
   }, []);
 
-  const handleLogin = () => {
-  
-      if (enteredUsername) {
-        localStorage.setItem('username', enteredUsername);
-        setUsername(enteredUsername);
-        if (enteredUsername === authName) {
-          setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
-        }
+  const handleLogin = async () => {
+
+    if (enteredUsername) {
+      localStorage.setItem('username', enteredUsername);
+      setUsername(enteredUsername);
+      const docUserSnap = await getDoc(loginDocRef);
+      if (docUserSnap.exists()) {
+       localStorage.setItem('adminname', docUserSnap.data().admin);
+       var userAuthName = docUserSnap.data().admin;
       }
+      if (enteredUsername === userAuthName) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    }
   };
 
   const handleScoreChange = async (team, game, value) => {
@@ -146,6 +153,7 @@ const App = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('username');
+    localStorage.removeItem('adminname');
     setUsername('');
     setIsAdmin(false);
     setEnteredUsername('');
@@ -280,11 +288,11 @@ const App = () => {
       {!username ? (
         <div className="loginpage">
           <header>
-            <h1>Login Page</h1>
+            <h1 className='headerlogin'>Login Page</h1>
           </header>
           <div className="logintextbox">
             <input
-              type="text"
+              type="password"
               className="usernamecenter"
               placeholder="Enter username"
               value={enteredUsername}
@@ -296,11 +304,11 @@ const App = () => {
       ) : (
         <>
           <header className="headercontent">
-            <span style={{ color: "green" }}>
-              Welcome {username === authName ? "" : " " + username}
+            <span className='user'>
+              Welcome {username === localStorage.getItem('adminname')  ? "admin" : " " + username}
             </span>
             <h1>Spardhey 2025 ScoreBoard</h1>
-            <span style={{ color: "green", cursor: 'pointer' }} onClick={handleLogout}> Logout </span>
+            <span className=' user logoutuser' onClick={handleLogout}> Logout </span>
           </header>
           <div className='viewpos'><button className="view" onClick={() => { setIsChart(true) }} hidden={isChart}>View Chart</button></div>
           {isChart ? (
