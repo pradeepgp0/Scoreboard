@@ -121,22 +121,37 @@ input:disabled {
   margin-left: 2rem;
   width: 10vh;
   height: 4vh;
+  cursor: pointer;
 }
 
 .headercontent {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  margin: 0;
 }
 
 .view {
-  text-align: end;
   border-radius: 20px;
   background-color: #4CAF50;
   border:0;
   color: white;
   margin-right: 10px;
+  cursor: pointer;
+}
+
+.linegraph {
+  width: 80%;
+  margin: 20px auto;
+  height: 60vh;
+  background-color: aliceblue;
+  opacity: 0.8;
+}
+
+.viewpos {
+  text-align: right;
+  margin-right: 12px;
 }
 /*animation*/
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db, doc, getDoc, setDoc } from './firebase.js';
 import './Scoreboard.css';
+import { authName } from './encrypt.js';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend, PointElement } from 'chart.js';
 
@@ -33,7 +34,7 @@ const App = () => {
       const storedUsername = localStorage.getItem('username');
       if (storedUsername) {
         setUsername(storedUsername);
-        if (storedUsername === 'Prad@2025') {
+        if (storedUsername === authName) {
           setIsAdmin(true);
         }
       }
@@ -107,18 +108,20 @@ const App = () => {
       }
     };
     loadScores();
+
   }, []);
 
   const handleLogin = () => {
-    if (enteredUsername) {
-      localStorage.setItem('username', enteredUsername);
-      setUsername(enteredUsername);
-      if (enteredUsername === 'Prad@2025') {
-        setIsAdmin(true);
-      } else {
-        setIsAdmin(false);
+  
+      if (enteredUsername) {
+        localStorage.setItem('username', enteredUsername);
+        setUsername(enteredUsername);
+        if (enteredUsername === authName) {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
       }
-    }
   };
 
   const handleScoreChange = async (team, game, value) => {
@@ -293,18 +296,18 @@ const App = () => {
       ) : (
         <>
           <header className="headercontent">
-            <span style={{ color: "green", marginLeft: "12px" }}>
-              Welcome {username === "Prad@2025" ? "" : " " + username}
+            <span style={{ color: "green" }}>
+              Welcome {username === authName ? "" : " " + username}
             </span>
             <h1>Spardhey 2025 ScoreBoard</h1>
-            <span style={{ color: "green", marginRight: "12px" }} onClick={handleLogout}> Logout </span>
+            <span style={{ color: "green", cursor: 'pointer' }} onClick={handleLogout}> Logout </span>
           </header>
-          <div style={{textAlign:'end', marginRight:'10px'}}><button className="view" onClick={() => { setIsChart(true) }} hidden={isChart}>View Chart</button></div>
+          <div className='viewpos'><button className="view" onClick={() => { setIsChart(true) }} hidden={isChart}>View Chart</button></div>
           {isChart ? (
             <>
-              <div style={{textAlign:'end', marginRight:'10px'}}><button className="view" onClick={() => { setIsChart(false) }}>View Scoreboard</button></div>
-              <div style={{ width: '80%', margin: '20px auto', height: "60vh" }}>
-                <Line style={{ backgroundColor: 'aliceblue', opacity: '0.8' }} data={chartData} options={chartOptions} />
+              <div className='viewpos'><button className="view" onClick={() => { setIsChart(false) }}>View Scoreboard</button></div>
+              <div className='linegraph'>
+                <Line data={chartData} options={chartOptions} />
               </div>
             </>
           ) : (<div>
