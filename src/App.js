@@ -39,8 +39,6 @@ const App = () => {
           setIsAdmin(true);
         }
       }
-
-
       const docSnap = await getDoc(scoresDocRef);
       if (docSnap.exists()) {
         const data = docSnap.data();
@@ -318,7 +316,7 @@ const App = () => {
                 <Line data={chartData} options={chartOptions} />
               </div>
             </>
-          ) : (<div>
+          ) : (<div className='tablelayout'>
             <table className="scoreboard-table">
               <thead>
                 <tr>
