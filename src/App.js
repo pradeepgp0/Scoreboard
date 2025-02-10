@@ -316,7 +316,7 @@ const App = () => {
                 <Line data={chartData} options={chartOptions} />
               </div>
             </>
-          ) : (<div className='tablelayout'>
+          ) : (<div>
             <table className="scoreboard-table">
               <thead>
                 <tr>

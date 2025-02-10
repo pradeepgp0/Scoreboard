@@ -55,6 +55,36 @@ h1 {
   margin-top: 5%;
 }
 
+
+@media (min-width:400px) and (max-width:500px) {
+  .scoreboard-table {
+    margin-top: 15%;
+  }
+  
+}
+
+@media (min-width:300px) and (max-width:400px) {
+  .scoreboard-table {
+    margin-top: 25%;
+  }
+  
+}
+
+@media (min-width:200px) and (max-width:300px) {
+  .scoreboard-table {
+    margin-top: 45%;
+  }
+  
+}
+
+
+@media (min-width:100px) and (max-width:200px) {
+  .scoreboard-table {
+    margin-top: 60%;
+  }
+  
+}
+
 .scoreboard-table th,
 .scoreboard-table td {
   padding: 15px;
@@ -163,13 +193,10 @@ input:disabled {
 
 
 
-.tablelayout {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0 auto;
+.column {
+  flex: 1; /* Or set a specific width */
+  padding: 10px;
+  border: 1px solid black;
 }
 .user {
   color: green;
