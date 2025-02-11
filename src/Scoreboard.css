@@ -162,11 +162,17 @@ input:disabled {
 
 .headercontent {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between; /* Or use space-around if you want more space between elements */
   align-items: center;
-  margin: 0;
+  padding: 0 20px; /* Add padding to avoid content sticking to the edges */
+  width: 100%;
+  box-sizing: border-box;
 }
+
+.view {
+  margin: 0 10px; /* Optional: adds spacing between the elements */
+}
+
 
 .view {
   border-radius: 20px;
