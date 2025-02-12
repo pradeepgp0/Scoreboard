@@ -306,12 +306,12 @@ const App = () => {
               Welcome {username === localStorage.getItem('adminname')  ? "admin" : " " + username}
             </span>
             <h1>Spardhey 2025 ScoreBoard</h1>
-            <span className='view' onClick={handleLogout}> Logout </span>
+            <span className='view pointhover' onClick={handleLogout}> Logout </span>
           </header>
-          <div className='viewpos'><button className="view" onClick={() => { setIsChart(true) }} hidden={isChart}>View Chart</button></div>
+          <div className='viewpos'><button className="view pointhover" onClick={() => { setIsChart(true) }} hidden={isChart}>View Chart</button></div>
           {isChart ? (
             <>
-              <div className='viewpos'><button className="view" onClick={() => { setIsChart(false) }}>View Scoreboard</button></div>
+              <div className='viewpos'><button className="view pointhover" onClick={() => { setIsChart(false) }}>View Scoreboard</button></div>
               <div className='linegraph'>
                 <Line data={chartData} options={chartOptions} />
               </div>

@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  touch-action: manipulation;
 }
 
 body {
@@ -18,29 +19,18 @@ body {
   /* Text color for contrast */
   font-family: 'Arial', sans-serif;
   /* Font for the page */
+  overscroll-behavior: none;
 }
 
 /* The scoreboard container styling remains the same */
 .scoreboard-container {
-  max-width: 900px;
+  width: 500px;
   margin: 50px auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
   /* Slightly transparent white background */
   border-radius: 15px;
   overflow-x: auto; 
-}
-
-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-h1 {
-  font-size: 36px;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .scoreboard-table {
@@ -56,33 +46,16 @@ h1 {
 }
 
 
-@media (min-width:400px) and (max-width:500px) {
-  .scoreboard-table {
-    margin-top: 15%;
-  }
-  
+header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-@media (min-width:300px) and (max-width:400px) {
-  .scoreboard-table {
-    margin-top: 25%;
-  }
-  
-}
-
-@media (min-width:200px) and (max-width:300px) {
-  .scoreboard-table {
-    margin-top: 45%;
-  }
-  
-}
-
-
-@media (min-width:100px) and (max-width:200px) {
-  .scoreboard-table {
-    margin-top: 60%;
-  }
-  
+h1 {
+  font-size: 36px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .scoreboard-table th,
@@ -180,6 +153,9 @@ input:disabled {
   border:0;
   color: white;
   margin-right: 10px;
+}
+
+.pointhover {
   cursor: pointer;
 }
 
@@ -246,4 +222,34 @@ input:disabled {
     transform: scale(1) rotate(0deg);
     /* Reset the rotation back to 0deg */
   }
+}
+
+
+@media (min-width:400px) and (max-width:500px) {
+  .scoreboard-table {
+    margin-top: 15%;
+  }
+  
+}
+
+@media (min-width:300px) and (max-width:400px) {
+  .scoreboard-table {
+    margin-top: 25%;
+  }
+  
+}
+
+@media (min-width:200px) and (max-width:300px) {
+  .scoreboard-table {
+    margin-top: 45%;
+  }
+  
+}
+
+
+@media (min-width:100px) and (max-width:200px) {
+  .scoreboard-table {
+    margin-top: 60%;
+  }
+  
 }
