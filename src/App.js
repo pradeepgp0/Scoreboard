@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db, doc, getDoc, setDoc } from './firebase.js';
+import { Button, InputGroup, FormControl } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Scoreboard.css';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend, PointElement } from 'chart.js';
@@ -118,8 +120,8 @@ const App = () => {
       setUsername(enteredUsername);
       const docUserSnap = await getDoc(loginDocRef);
       if (docUserSnap.exists()) {
-       localStorage.setItem('adminname', docUserSnap.data().admin);
-       var userAuthName = docUserSnap.data().admin;
+        localStorage.setItem('adminname', docUserSnap.data().admin);
+        var userAuthName = docUserSnap.data().admin;
       }
       if (enteredUsername === userAuthName) {
         setIsAdmin(true);
@@ -284,26 +286,22 @@ const App = () => {
   return (
     <div className="App">
       {!username ? (
-        <div className="loginpage">
-          <header>
-            <h1 className='headerlogin'>Login Page</h1>
-          </header>
-          <div className="logintextbox">
-            <input
-              type="password"
-              className="usernamecenter"
-              placeholder="Enter username"
+        <div className="loginpage" style={{ textAlign: 'center', padding: '20px' }}>
+          <h1 style={{ color: '#4CAF50' }}>Login Page</h1>
+          <InputGroup className="mb-3" style={{ maxWidth: '400px', margin: '0 auto' }}>
+            <FormControl
               value={enteredUsername}
               onChange={(e) => setEnteredUsername(e.target.value)}
+              placeholder="Enter Username"
             />
-            <button className="buttoncenter" onClick={handleLogin}>Login</button>
-          </div>
+            <Button variant="success" onClick={() => { handleLogin() }}>Login</Button>
+          </InputGroup>
         </div>
       ) : (
         <>
           <header className="headercontent">
             <span className='view'>
-              Welcome {username === localStorage.getItem('adminname')  ? "admin" : " " + username}
+              Welcome {username === localStorage.getItem('adminname') ? "admin" : " " + username}
             </span>
             <h1>Spardhey 2025 ScoreBoard</h1>
             <span className='view pointhover' onClick={handleLogout}> Logout </span>

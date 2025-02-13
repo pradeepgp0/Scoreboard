@@ -20,6 +20,7 @@ body {
   font-family: 'Arial', sans-serif;
   /* Font for the page */
   overscroll-behavior: none;
+  opacity: 0.8;
 }
 
 /* The scoreboard container styling remains the same */
@@ -108,7 +109,7 @@ input:disabled {
 .loginpage {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   height: 100vh;
 }
