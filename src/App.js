@@ -302,13 +302,13 @@ const App = () => {
       ) : (
         <>
           <header className="headercontent">
-            <span className='view'>
+            <span className='view w3'>
               Welcome {username === localStorage.getItem('adminname') ? "admin" : " " + username}
             </span>
             <h1>Spardhey 2025 ScoreBoard</h1>
-            <span className='view pointhover' onClick={handleLogout}> Logout </span>
+            <span className='view pointhover w1' onClick={handleLogout}> Logout </span>
           </header>
-          <div className='viewpos'><button className="view pointhover" onClick={() => { setIsChart(true) }} hidden={isChart}>View Chart</button></div>
+          <div className='viewpos'><button className="view pointhover w2" onClick={() => { setIsChart(true) }} hidden={isChart}>View Chart</button></div>
           {isChart ? (
             <>
               <div className='viewpos'><button className="view pointhover" onClick={() => { setIsChart(false) }}>View Scoreboard</button></div>

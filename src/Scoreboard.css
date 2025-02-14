@@ -130,6 +130,17 @@ input:disabled {
   text-align: center; /* Center the text inside the form */
 }
 
+.w1 {
+  width: 4rem;
+}
+
+.w2 {
+  width: 6rem;
+}
+
+.w3 {
+  width: 12rem;
+}
 
 .headerlogin {
   color: orangered;
@@ -163,7 +174,7 @@ input:disabled {
 
 .view {
   border-radius: 20px;
-  background-color: #4CAF50;
+  background-color: #146c43;
   border: 0;
   color: white;
   margin-right: 10px;
