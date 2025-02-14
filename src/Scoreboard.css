@@ -31,7 +31,7 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   /* Slightly transparent white background */
   border-radius: 15px;
-  overflow-x: auto; 
+  overflow-x: auto;
 }
 
 .scoreboard-table {
@@ -105,21 +105,31 @@ h1 {
 input:disabled {
   background-color: #f0f0f0;
 }
-
-.loginpage {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 100vh;
-}
-
 .logintextbox {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
+
+
+.loginpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure the container takes up the full viewport height */
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Set max width for the login form */
+  text-align: center; /* Center the text inside the form */
+}
+
 
 .headerlogin {
   color: orangered;
@@ -136,22 +146,25 @@ input:disabled {
 
 .headercontent {
   display: flex;
-  justify-content: space-between; /* Or use space-around if you want more space between elements */
+  justify-content: space-between;
+  /* Or use space-around if you want more space between elements */
   align-items: center;
-  padding: 0 20px; /* Add padding to avoid content sticking to the edges */
+  padding: 0 20px;
+  /* Add padding to avoid content sticking to the edges */
   width: 100%;
   box-sizing: border-box;
 }
 
 .view {
-  margin: 0 10px; /* Optional: adds spacing between the elements */
+  margin: 0 10px;
+  /* Optional: adds spacing between the elements */
 }
 
 
 .view {
   border-radius: 20px;
   background-color: #4CAF50;
-  border:0;
+  border: 0;
   color: white;
   margin-right: 10px;
 }
@@ -177,10 +190,12 @@ input:disabled {
 
 
 .column {
-  flex: 1; /* Or set a specific width */
+  flex: 1;
+  /* Or set a specific width */
   padding: 10px;
   border: 1px solid black;
 }
+
 .user {
   color: green;
 }
@@ -188,6 +203,7 @@ input:disabled {
 .logoutuser {
   cursor: pointer;
 }
+
 /*animation*/
 
 .celebrate {
@@ -198,6 +214,7 @@ input:disabled {
 .celebrate {
   border-radius: 50px;
 }
+
 /* Combined Bounce and Rotation Animation */
 @keyframes bounceRotate {
   0% {
@@ -230,21 +247,21 @@ input:disabled {
   .scoreboard-table {
     margin-top: 15%;
   }
-  
+
 }
 
 @media (min-width:300px) and (max-width:400px) {
   .scoreboard-table {
     margin-top: 25%;
   }
-  
+
 }
 
 @media (min-width:200px) and (max-width:300px) {
   .scoreboard-table {
     margin-top: 45%;
   }
-  
+
 }
 
 
@@ -252,5 +269,5 @@ input:disabled {
   .scoreboard-table {
     margin-top: 60%;
   }
-  
+
 }

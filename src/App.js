@@ -287,7 +287,8 @@ const App = () => {
     <div className="App">
       {!username ? (
         <div className="loginpage" style={{ textAlign: 'center', padding: '20px' }}>
-          <h1 style={{ color: '#4CAF50' }}>Login Page</h1>
+          <div className='login-container'>
+          <h1 style={{ color: 'rgb(34 30 189)' }}>Login Page</h1>
           <InputGroup className="mb-3" style={{ maxWidth: '400px', margin: '0 auto' }}>
             <FormControl
               value={enteredUsername}
@@ -296,6 +297,7 @@ const App = () => {
             />
             <Button variant="success" onClick={() => { handleLogin() }}>Login</Button>
           </InputGroup>
+          </div>
         </div>
       ) : (
         <>
