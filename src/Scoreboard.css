@@ -46,10 +46,14 @@ body {
   margin-top: 5%;
 }
 
-
 header {
   text-align: center;
   margin-bottom: 30px;
+}
+
+.headername {
+  background-color: white;
+  border-radius: 12px;
 }
 
 h1 {
@@ -85,21 +89,21 @@ h1 {
 
 /* Team colors */
 .red {
-  background-color: #f44336;
+  background-color: #eb190a;
 
 }
 
 .green {
-  background-color: #4CAF50;
+  background-color: #09ea11;
 
 }
 
 .blue {
-  background-color: #2196F3;
+  background-color: #0789f3;
 }
 
 .yellow {
-  background-color: #FFEB3B;
+  background-color: #e9d102;
 }
 
 input:disabled {

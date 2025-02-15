@@ -288,30 +288,33 @@ const App = () => {
       {!username ? (
         <div className="loginpage" style={{ textAlign: 'center', padding: '20px' }}>
           <div className='login-container'>
-          <h1 style={{ color: 'rgb(34 30 189)' }}>Login Page</h1>
-          <InputGroup className="mb-3" style={{ maxWidth: '400px', margin: '0 auto' }}>
-            <FormControl
-              value={enteredUsername}
-              onChange={(e) => setEnteredUsername(e.target.value)}
-              placeholder="Enter Username"
-            />
-            <Button variant="success" onClick={() => { handleLogin() }}>Login</Button>
-          </InputGroup>
+            <h1 style={{ color: 'rgb(34 30 189)' }}>Login Page</h1>
+            <InputGroup className="mb-3" style={{ maxWidth: '400px', margin: '0 auto' }}>
+              <FormControl
+                value={enteredUsername}
+                onChange={(e) => setEnteredUsername(e.target.value)}
+                placeholder="Enter Username"
+              />
+              <Button variant="success" onClick={() => { handleLogin() }}>Login</Button>
+            </InputGroup>
           </div>
         </div>
       ) : (
         <>
           <header className="headercontent">
-            <span className='view w3'>
-              Welcome {username === localStorage.getItem('adminname') ? "admin" : " " + username}
-            </span>
-            <h1>Spardhey 2025 ScoreBoard</h1>
-            <span className='view pointhover w1' onClick={handleLogout}> Logout </span>
+            <h3>Welcome {username === localStorage.getItem('adminname') ? "admin" : " " + username}</h3>
+            <h1 className='headername'>Spardhey 2025 ScoreBoard</h1>
+            <Button variant="danger" onClick={() => { handleLogout() }}>Logout</Button>
           </header>
-          <div className='viewpos'><button className="view pointhover w2" onClick={() => { setIsChart(true) }} hidden={isChart}>View Chart</button></div>
+          <div className='viewpos'>
+            <Button variant="success" onClick={() => { setIsChart(true) }} hidden={isChart}>View Chart</Button>
+          </div>
+
           {isChart ? (
             <>
-              <div className='viewpos'><button className="view pointhover" onClick={() => { setIsChart(false) }}>View Scoreboard</button></div>
+              <div className='viewpos'>
+                <Button variant="success" className='viewpos' onClick={() => { setIsChart(false) }}>View Scoreboard</Button>
+              </div>
               <div className='linegraph'>
                 <Line data={chartData} options={chartOptions} />
               </div>
