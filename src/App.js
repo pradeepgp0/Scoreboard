@@ -27,20 +27,16 @@ const App = () => {
     blue: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 },
     yellow: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 }
   });
-
   const scoresDocRef = doc(db, 'scores', 'scoreboard');
   const loginDocRef = doc(db, 'login', 'loginboard');
 
   useEffect(() => {
     const loadScores = async () => {
-      const storedUsername = localStorage.getItem('username');
-      const authName = localStorage.getItem('adminname');
-      if (storedUsername) {
-        setUsername(storedUsername);
-        if (storedUsername === authName) {
-          setIsAdmin(true);
-        }
-      }
+      const storedUsername = sessionStorage.getItem('username');
+      const valid = JSON.parse(sessionStorage.getItem('validUser'));
+      setUsername(storedUsername);
+      setIsAdmin(valid);
+
       const docSnap = await getDoc(scoresDocRef);
       if (docSnap.exists()) {
         const data = docSnap.data();
@@ -116,17 +112,18 @@ const App = () => {
   const handleLogin = async () => {
 
     if (enteredUsername) {
-      localStorage.setItem('username', enteredUsername);
+      sessionStorage.setItem('username', enteredUsername);
       setUsername(enteredUsername);
       const docUserSnap = await getDoc(loginDocRef);
       if (docUserSnap.exists()) {
-        localStorage.setItem('adminname', docUserSnap.data().admin);
         var userAuthName = docUserSnap.data().admin;
       }
       if (enteredUsername === userAuthName) {
         setIsAdmin(true);
+        sessionStorage.setItem('validUser', JSON.stringify(true));
       } else {
         setIsAdmin(false);
+        sessionStorage.setItem('validUser', JSON.stringify(false));
       }
     }
   };
@@ -152,12 +149,12 @@ const App = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('username');
-    localStorage.removeItem('adminname');
+    sessionStorage.removeItem('username');
     setUsername('');
     setIsAdmin(false);
     setEnteredUsername('');
     setIsChart(false);
+    sessionStorage.removeItem('validUser');
   };
 
   const chartOptions = {
@@ -302,7 +299,7 @@ const App = () => {
       ) : (
         <>
           <header className="headercontent">
-            <h3>Welcome {username === localStorage.getItem('adminname') ? "admin" : " " + username}</h3>
+            <h3>Welcome {isAdmin ? "admin" : " " + username}</h3>
             <h1 className='headername'>Spardhey 2025 ScoreBoard</h1>
             <Button variant="danger" onClick={() => { handleLogout() }}>Logout</Button>
           </header>
