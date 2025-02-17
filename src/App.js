@@ -283,7 +283,7 @@ const App = () => {
   return (
     <div className="App">
       {!username ? (
-        <div className="loginpage" style={{ textAlign: 'center', padding: '20px' }}>
+        <div className="loginpage">
           <div className='login-container'>
             <h1 style={{ color: 'rgb(34 30 189)' }}>Login Page</h1>
             <InputGroup className="mb-3" style={{ maxWidth: '400px', margin: '0 auto' }}>
@@ -316,7 +316,7 @@ const App = () => {
                 <Line data={chartData} options={chartOptions} />
               </div>
             </>
-          ) : (<div>
+          ) : (<div className='tablepos'>
             <table className="scoreboard-table">
               <thead>
                 <tr>

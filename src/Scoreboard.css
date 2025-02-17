@@ -11,7 +11,7 @@ body {
   background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/1672c161484101.5a704e766346f.jpg');
   background-size: cover;
   /* Ensures the image covers the entire screen */
-  background-position: center;
+  background-position: center 40%;
   /* Centers the image */
   background-attachment: fixed;
   /* Fixes the background so it doesn't scroll with the content */
@@ -28,6 +28,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh; /* Ensure the container takes up the full viewport height */
+  padding: 20px;
 }
 
 .login-container {
@@ -52,6 +53,7 @@ header {
 .headername {
   background-color: white;
   border-radius: 12px;
+  margin-right: 9rem;
 }
 
 h1 {
@@ -71,6 +73,15 @@ h1 {
   /* Add padding to avoid content sticking to the edges */
   width: 100%;
   box-sizing: border-box;
+}
+
+
+.tablepos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }
 /* The scoreboard container styling remains the same */
 .scoreboard-container {
@@ -247,6 +258,7 @@ input:disabled {
   }
 
 }
+
 
 
 @media (min-width:100px) and (max-width:200px) {
