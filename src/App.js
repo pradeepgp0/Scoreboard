@@ -197,7 +197,7 @@ const App = () => {
             <Button variant="danger" onClick={handleLogout}>Logout</Button>
           </header>
           <div className='viewpos'>
-            <Button variant="success" onClick={() => setIsChart(true)} hidden={isChart}>View Chart</Button>
+            <Button variant="success" onClick={() => setIsChart(true)} hidden={isChart}>View Graph</Button>
           </div>
 
           {isChart ? (
