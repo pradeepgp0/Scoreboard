@@ -63,6 +63,11 @@ h1 {
   letter-spacing: 1px;
 }
 
+.text {
+  color: forestgreen;
+  background-color: white;
+  border-radius: 0.5rem;
+}
 
 .headercontent {
   display: flex;

@@ -192,7 +192,7 @@ const App = () => {
       ) : (
         <>
           <header className="headercontent">
-            <h3>Welcome {isAdmin ? "admin" : " " + username}</h3>
+            <h3 className='text'>Welcome {isAdmin ? "admin" : " " + username}</h3>
             <h1 className='headername'>Spardhey 2025 ScoreBoard</h1>
             <Button variant="danger" onClick={handleLogout}>Logout</Button>
           </header>
