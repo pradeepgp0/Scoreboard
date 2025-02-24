@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, doc, getDoc, setDoc } from './firebase.js';
+import { onSnapshot } from 'firebase/firestore';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Scoreboard.css';
@@ -32,35 +33,33 @@ const App = () => {
   const loginDocRef = doc(db, 'login', 'loginboard');
 
   useEffect(() => {
-
-    const loadScores = async () => {
-      try {
-        const storedUsername = sessionStorage.getItem('username');
-        const valid = JSON.parse(sessionStorage.getItem('validUser'));
-        setUsername(storedUsername);
-        setIsAdmin(valid);
-
-        const docSnap = await getDoc(scoresDocRef);
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          const orderedScores = {
-            red: { ...scores.red, ...data.red },
-            green: { ...scores.green, ...data.green },
-            blue: { ...scores.blue, ...data.blue },
-            yellow: { ...scores.yellow, ...data.yellow },
-          };
-          setScores(orderedScores);
-        } else {
-          console.log('Scores not available');
-        }
-      } catch (error) {
-        console.log('Error while fectching the data ');
+    
+    const storedUsername = sessionStorage.getItem('username');
+    const valid = JSON.parse(sessionStorage.getItem('validUser'));
+    setUsername(storedUsername);
+    setIsAdmin(valid);
+    
+    const unsubscribe = onSnapshot(scoresDocRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        const orderedScores = {
+          red: { ...scores.red, ...data.red },
+          green: { ...scores.green, ...data.green },
+          blue: { ...scores.blue, ...data.blue },
+          yellow: { ...scores.yellow, ...data.yellow },
+        };
+        setScores(orderedScores);
+      } else {
+        console.log('Scores not available');
       }
-    }
-
-    loadScores();
+    }, (error) => {
+      console.log('Error while fetching real-time data', error);
+    });
+  
+    // Cleanup function to unsubscribe from the listener
+    return () => unsubscribe();
   }, []);
-
+  
   const handleLogin = async () => {
     if (enteredUsername) {
       sessionStorage.setItem('username', enteredUsername);
