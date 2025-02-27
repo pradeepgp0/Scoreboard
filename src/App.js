@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db, doc, getDoc, setDoc } from './firebase.js';
 import { onSnapshot } from 'firebase/firestore';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
+import TeamResults from './Results.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Scoreboard.css';
 import { Line } from 'react-chartjs-2';
@@ -22,13 +23,26 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [enteredUsername, setEnteredUsername] = useState('');
   const [isChart, setIsChart] = useState(false);
+  const [showResultScreen, isShowResultScreen] = useState(false);
   const [scores, setScores] = useState({
-    red: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 },
-    green: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 },
-    blue: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 },
-    yellow: { cricket: 0, badminton: 0, throwball: 0, Relay: 0, TableTennis: 0, Lagori: 0, Chess: 0, Swimming: 0, Football: 0, total: 0 }
+    red: { cricket: 0, badmintonMS: 0, 
+      badmintonWS: 0,badmintonMD: 0,badmintonWD: 0,badmintonMix: 0,
+      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0, 
+      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0 },
+     green:  { cricket: 0, badmintonMS: 0, 
+      badmintonWS: 0,badmintonMD: 0,badmintonWD: 0,badmintonMix: 0,
+      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0, 
+      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0 },
+    blue: { cricket: 0, badmintonMS: 0, 
+      badmintonWS: 0,badmintonMD: 0,badmintonWD: 0,badmintonMix: 0,
+      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0, 
+      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0 },
+    yellow:  { cricket: 0, badmintonMS: 0, 
+      badmintonWS: 0,badmintonMD: 0,badmintonWD: 0,badmintonMix: 0,
+      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0, 
+      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0 },
   });
-
+  
   const scoresDocRef = doc(db, 'scores', 'scoreboard');
   const loginDocRef = doc(db, 'login', 'loginboard');
 
@@ -198,8 +212,8 @@ const App = () => {
           <div className='viewpos'>
             <Button variant="success" onClick={() => setIsChart(true)} hidden={isChart}>View Graph</Button>
           </div>
-
-          {isChart ? (
+          {showResultScreen && <TeamResults/>}
+          {isChart && !showResultScreen ? (
             <>
               <div className='viewpos'>
                 <Button variant="success" className='viewpos' onClick={() => setIsChart(false)}>View Scoreboard</Button>
@@ -208,7 +222,7 @@ const App = () => {
                 <Line data={chartData} options={chartOptions} />
               </div>
             </>
-          ) : (
+          ) : ( !showResultScreen &&
             <div className='tablepos'>
               <table className="scoreboard-table">
                 <thead>

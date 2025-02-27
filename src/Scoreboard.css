@@ -9,6 +9,7 @@ body {
 
 body {
   background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/1400/1672c161484101.5a704e766346f.jpg');
+  /* background-image: url('images/background.jpg'); */
   background-size: cover;
   /* Ensures the image covers the entire screen */
   background-position: center 40%;
@@ -119,7 +120,7 @@ h1 {
 }
 
 .scoreboard-table th {
-  background-color: #517692;
+  background-color: #03375f;
   color: white;
   border-radius: 32px;
 }
@@ -213,6 +214,7 @@ input:disabled {
 /* Optional styling for celebration */
 .celebrate {
   border-radius: 50px;
+  font-weight: 900;
 }
 
 /* Combined Bounce and Rotation Animation */
