@@ -23,36 +23,44 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [enteredUsername, setEnteredUsername] = useState('');
   const [isChart, setIsChart] = useState(false);
-  const [showResultScreen, isShowResultScreen] = useState(false);
+  // const [showResultScreen, isShowResultScreen] = useState(false);
   const [scores, setScores] = useState({
-    red: { cricket: 0, badmintonMS: 0, 
-      badmintonWS: 0,badmintonMD: 0,badmintonWD: 0,badmintonMix: 0,
-      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0, 
-      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0 },
-     green:  { cricket: 0, badmintonMS: 0, 
-      badmintonWS: 0,badmintonMD: 0,badmintonWD: 0,badmintonMix: 0,
-      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0, 
-      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0 },
-    blue: { cricket: 0, badmintonMS: 0, 
-      badmintonWS: 0,badmintonMD: 0,badmintonWD: 0,badmintonMix: 0,
-      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0, 
-      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0 },
-    yellow:  { cricket: 0, badmintonMS: 0, 
-      badmintonWS: 0,badmintonMD: 0,badmintonWD: 0,badmintonMix: 0,
-      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0, 
-      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0 },
+    red: {
+      cricket: 0, badmintonMS: 0,
+      badmintonWS: 0, badmintonMD: 0, badmintonWD: 0, badmintonMix: 0,
+      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0,
+      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0
+    },
+    green: {
+      cricket: 0, badmintonMS: 0,
+      badmintonWS: 0, badmintonMD: 0, badmintonWD: 0, badmintonMix: 0,
+      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0,
+      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0
+    },
+    blue: {
+      cricket: 0, badmintonMS: 0,
+      badmintonWS: 0, badmintonMD: 0, badmintonWD: 0, badmintonMix: 0,
+      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0,
+      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0
+    },
+    yellow: {
+      cricket: 0, badmintonMS: 0,
+      badmintonWS: 0, badmintonMD: 0, badmintonWD: 0, badmintonMix: 0,
+      throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0,
+      Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0
+    },
   });
-  
+
   const scoresDocRef = doc(db, 'scores', 'scoreboard');
   const loginDocRef = doc(db, 'login', 'loginboard');
 
   useEffect(() => {
-    
+
     const storedUsername = sessionStorage.getItem('username');
     const valid = JSON.parse(sessionStorage.getItem('validUser'));
     setUsername(storedUsername);
     setIsAdmin(valid);
-    
+
     const unsubscribe = onSnapshot(scoresDocRef, (docSnap) => {
       if (docSnap.exists()) {
         const data = docSnap.data();
@@ -69,11 +77,11 @@ const App = () => {
     }, (error) => {
       console.log('Error while fetching real-time data', error);
     });
-  
+
     // Cleanup function to unsubscribe from the listener
     return () => unsubscribe();
   }, []);
-  
+
   const handleLogin = async () => {
     if (enteredUsername) {
       sessionStorage.setItem('username', enteredUsername);
@@ -188,32 +196,45 @@ const App = () => {
 
   return (
     <div className="App">
+
+
       {!username ? (
-        <div className="loginpage">
-          <div className='login-container'>
-            <h1 style={{ color: 'rgb(34 30 189)' }}>Login Page</h1>
-            <InputGroup className="mb-3" style={{ maxWidth: '400px', margin: '0 auto' }}>
-              <FormControl
-                value={enteredUsername}
-                onChange={(e) => setEnteredUsername(e.target.value)}
-                placeholder="Enter Username"
-              />
-              <Button variant="success" onClick={handleLogin}>Login</Button>
-            </InputGroup>
+
+        <div>
+          <div className='loginheader'>
+            <h1 className='loginheadername'>Spardhey 2025 ScoreBoard</h1>
+          </div>
+          <div className="loginpage">
+            <div className='login-container'>
+              <h1 style={{ color: 'rgb(34 30 189)' }}>Login Page</h1>
+              <InputGroup className="mb-3" style={{ maxWidth: '400px', margin: '0 auto' }}>
+                <FormControl
+                  value={enteredUsername}
+                  onChange={(e) => setEnteredUsername(e.target.value)}
+                  placeholder="Enter Username"
+                />
+                <Button variant="success" onClick={handleLogin}>Login</Button>
+              </InputGroup>
+            </div>
           </div>
         </div>
+
       ) : (
         <>
+
+
+
           <header className="headercontent">
             <h3 className='text'>Welcome {isAdmin ? "admin" : " " + username}</h3>
             <h1 className='headername'>Spardhey 2025 ScoreBoard</h1>
             <Button variant="danger" onClick={handleLogout}>Logout</Button>
           </header>
+          {/* {showVote && <VoteComponent username={username}/>} */}
           <div className='viewpos'>
             <Button variant="success" onClick={() => setIsChart(true)} hidden={isChart}>View Graph</Button>
           </div>
-          {showResultScreen && <TeamResults/>}
-          {isChart && !showResultScreen ? (
+          {/* {showResultScreen && <TeamResults />} */}
+          {isChart ? (
             <>
               <div className='viewpos'>
                 <Button variant="success" className='viewpos' onClick={() => setIsChart(false)}>View Scoreboard</Button>
@@ -222,7 +243,7 @@ const App = () => {
                 <Line data={chartData} options={chartOptions} />
               </div>
             </>
-          ) : ( !showResultScreen &&
+          ) : (
             <div className='tablepos'>
               <table className="scoreboard-table">
                 <thead>

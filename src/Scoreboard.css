@@ -28,7 +28,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Ensure the container takes up the full viewport height */
+  height: 80vh; /* Ensure the container takes up the full viewport height */
   padding: 20px;
 }
 
@@ -42,6 +42,17 @@ body {
   text-align: center; /* Center the text inside the form */
 }
 
+.loginheader {
+  display: flex;
+  place-content: center center;
+  flex-wrap: wrap;
+}
+
+.loginheadername {
+  background-color: white;
+  border-radius: 1.2rem;
+  margin-top: 2%;
+}
 
 .logoutuser {
   cursor: pointer;
@@ -88,6 +99,7 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 80vh;
+  overflow: auto;
 }
 /* The scoreboard container styling remains the same */
 .scoreboard-container {
@@ -97,7 +109,6 @@ h1 {
   background-color: rgba(255, 255, 255, 0.8);
   /* Slightly transparent white background */
   border-radius: 15px;
-  overflow-x: auto;
 }
 
 .scoreboard-table {
@@ -107,7 +118,7 @@ h1 {
   /* Center the table */
   border-radius: 64px;
   /* Round the corners of the table */
-  overflow: hidden;
+  overflow: auto;
   /* Make sure rounded corners work */
   margin-top: 5%;
 }
@@ -191,6 +202,18 @@ input:disabled {
 }
 
 
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.centerpart {
+background-color: green;
+}
 
 
 .column {
