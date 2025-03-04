@@ -53,7 +53,7 @@ const App = () => {
 
   const scoresDocRef = doc(db, 'scores', 'scoreboard');
   const loginDocRef = doc(db, 'login', 'loginboard');
-
+  const teamNames = { red: 'Raging Reds', green: 'Emerald Warriors', blue: 'Blue Thunder', yellow: 'Minion Martials' };
   useEffect(() => {
 
     const storedUsername = sessionStorage.getItem('username');
@@ -176,7 +176,7 @@ const App = () => {
   };
 
   const chartData = {
-    labels: ['Red', 'Green', 'Blue', 'Yellow'],
+    labels: ['Raging Reds', 'Emerald Warriors', 'Blue Thunder', 'Minion Martials'],
     datasets: [
       {
         label: 'Total Scores',
@@ -258,7 +258,7 @@ const App = () => {
                 <tbody>
                   {Object.keys(scores).map((team) => (
                     <tr key={team} className={team}>
-                      <td>{team.charAt(0).toUpperCase() + team.slice(1)}</td>
+                      <td>{(teamNames[team]).charAt(0).toUpperCase() + teamNames[team].slice(1)}</td>
                       {Object.keys(scores[team]).filter(x => x !== 'total').map((value, index) => (
                         <td key={index}>
                           <input
