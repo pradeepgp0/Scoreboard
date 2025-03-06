@@ -196,13 +196,12 @@ input:disabled {
 .pointhover {
   cursor: pointer;
 }
-
 .linegraph {
   width: 80%;
   margin: 20px auto;
   height: 60vh;
   background-color: aliceblue;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .viewpos {
