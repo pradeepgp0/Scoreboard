@@ -26,26 +26,26 @@ const App = () => {
   // const [showResultScreen, isShowResultScreen] = useState(false);
   const [scores, setScores] = useState({
     red: {
-      cricket: 0, badmintonMS: 0,
-      badmintonWS: 0, badmintonMD: 0, badmintonWD: 0, badmintonMix: 0,
+      Cricket: 0, BadmintonMS: 0,
+      BadmintonWS: 0, BadmintonMD: 0, BadmintonWD: 0, BadmintonMix: 0,
       throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0,
       Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0
     },
     green: {
-      cricket: 0, badmintonMS: 0,
-      badmintonWS: 0, badmintonMD: 0, badmintonWD: 0, badmintonMix: 0,
+      Cricket: 0, BadmintonMS: 0,
+      BadmintonWS: 0, BadmintonMD: 0, BadmintonWD: 0, BadmintonMix: 0,
       throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0,
       Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0
     },
     blue: {
-      cricket: 0, badmintonMS: 0,
-      badmintonWS: 0, badmintonMD: 0, badmintonWD: 0, badmintonMix: 0,
+      Cricket: 0, BadmintonMS: 0,
+      BadmintonWS: 0, BadmintonMD: 0, BadmintonWD: 0, BadmintonMix: 0,
       throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0,
       Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0
     },
     yellow: {
-      cricket: 0, badmintonMS: 0,
-      badmintonWS: 0, badmintonMD: 0, badmintonWD: 0, badmintonMix: 0,
+      Cricket: 0, BadmintonMS: 0,
+      BadmintonWS: 0, BadmintonMD: 0, BadmintonWD: 0, BadmintonMix: 0,
       throwball: 0, Relay: 0, TTMSingles: 0, TTWSingles: 0, TTMix: 0,
       Lagori: 0, Chess: 0, CarromMD: 0, CarronWD: 0, CarromMix: 0, Volleyball: 0, Football: 0, total: 0
     },
@@ -258,7 +258,7 @@ const App = () => {
                 <tbody>
                   {Object.keys(scores).map((team) => (
                     <tr key={team} className={team}>
-                      <td>{(teamNames[team]).charAt(0).toUpperCase() + teamNames[team].slice(1)}</td>
+                      <td className="teamBold">{(teamNames[team]).charAt(0).toUpperCase() + teamNames[team].slice(1)}</td>
                       {Object.keys(scores[team]).filter(x => x !== 'total').map((value, index) => (
                         <td key={index}>
                           <input
