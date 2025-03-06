@@ -21,7 +21,7 @@ body {
   font-family: 'Arial', sans-serif;
   /* Font for the page */
   overscroll-behavior: none;
-  opacity: 0.8;
+  
 }
 
 .loginpage {
@@ -130,6 +130,7 @@ h1 {
   overflow: auto;
   /* Make sure rounded corners work */
   margin-top: 5%;
+  opacity: 1;
 }
 
 .scoreboard-table th,
@@ -201,7 +202,7 @@ input:disabled {
   margin: 20px auto;
   height: 60vh;
   background-color: aliceblue;
-  opacity: 1;
+  opacity: 0.8;
 }
 
 .viewpos {
